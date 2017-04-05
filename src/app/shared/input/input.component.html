@@ -1,0 +1,5 @@
+<div class="form-group">
+  <label>{{label}}</label>
+  <input type="text" class="form-control" [name]="name" [(ngModel)]="model" #inputModel="ngModel" required>
+  <div *ngIf="!inputModel.control.valid && inputModel.control.touched" class="alert alert-danger">Please enter a valid {{label}}.</div>
+</div>

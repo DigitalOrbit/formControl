@@ -1,9 +1,18 @@
-<h1>
-  {{title}}
-</h1>
-<ul>
-<li><a routerLink="/">Home</a></li>
-<li><a routerLink="/page-1">Page 1</a></li>
-<li><a routerLink="/page-2">Page 2</a></li>
-</ul>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-toggleable navbar-inverse bg-primary">
+  <div class="navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/page-1">Page 1</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/page-2">Page 2</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

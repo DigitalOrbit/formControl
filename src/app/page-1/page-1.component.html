@@ -1,3 +1,14 @@
-<p>
-  page-1 works!
-</p>
+<form novalidate (ngSubmit)="saveAndNext()" #form="ngForm">
+
+  <div class="row">
+    <div class="col">
+      <app-input label="Firstname" [(model)]="personalData.firstname"></app-input>
+    </div>
+    <div class="col">
+      <app-input label="Lastname" [(model)]="personalData.lastname"></app-input>
+    </div>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Next</button>
+</form>

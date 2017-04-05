@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-page-1',
   templateUrl: './page-1.component.html',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page1Component implements OnInit {
 
+  public personalData = {};
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  public saveAndNext() {
+    console.log('saved');
+  }
 }

@@ -2,13 +2,14 @@
 
   <div class="row">
     <div class="col">
-      <app-input label="Firstname" name="firstname" [(model)]="personalData.firstname"></app-input>
+      <app-input name="firstname" label="Firstname" [(model)]="personalData.firstname" ngModel></app-input>
     </div>
     <div class="col">
-      <app-input label="Lastname" name="lastname" [(model)]="personalData.lastname"></app-input>
+      <app-input name="lastname" label="Lastname" [(model)]="personalData.lastname" ngModel></app-input>
     </div>
 
   </div>
+  <pre>{{form.value | json}}</pre>
 
   <div class="row">
     <div class="col">

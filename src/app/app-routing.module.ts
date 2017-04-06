@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'page-2',
-    component: Page1Component
+    component: Page2Component
   }
 ];
 

@@ -2,23 +2,57 @@
 
   <div class="row">
     <div class="col">
-      <app-input name="firstname" label="Firstname" [(model)]="personalData.firstname" ngModel></app-input>
-    </div>
-    <div class="col">
-      <app-input name="lastname" label="Lastname" [(model)]="personalData.lastname" ngModel></app-input>
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col">
-      <div class="form-group">
-        <label>Test</label>
-        <input type="text" class="form-control" name="test" [(ngModel)]="personalData.test" #inputModel="ngModel" required>
-        <div *ngIf="!inputModel.control.valid && inputModel.control.touched" class="alert alert-danger">Please enter a valid Input.</div>
-      </div>
+      <app-input #firstname="ngModel" name="firstname" label="Firstname" [(model)]="personalData.firstname" minlength="3" maxlength="10"
+        pattern="[A-Z][a-z]+" ngModel required></app-input>
     </div>
   </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">valid</th>
+        <td class="text-white" [class.bg-success]="firstname.valid" [class.bg-danger]="!firstname.valid">{{firstname.valid}}</td>
+      </tr>
+      <tr>
+        <th scope="row">invalid</th>
+        <td class="text-white" [class.bg-success]="!firstname.invalid" [class.bg-danger]="firstname.invalid">{{firstname.invalid}}</td>
+      </tr>
+      <tr>
+        <th scope="row">touched</th>
+        <td class="text-white" [class.bg-success]="!firstname.touched" [class.bg-danger]="firstname.touched">{{firstname.touched}}</td>
+      </tr>
+      <tr>
+        <th scope="row">untouched</th>
+        <td class="text-white" [class.bg-success]="firstname.untouched" [class.bg-danger]="!firstname.control.untouched">{{firstname.untouched}}</td>
+      </tr>
+      <tr>
+        <th scope="row">pristine</th>
+        <td class="text-white" [class.bg-success]="!firstname.pristine" [class.bg-danger]="firstname.pristine">{{firstname.pristine}}</td>
+      </tr>
+      <tr>
+        <th scope="row">dirty</th>
+        <td class="text-white" [class.bg-success]="firstname.dirty" [class.bg-danger]="!firstname.dirty">{{firstname.dirty}}</td>
+      </tr>
+      <tr>
+        <th scope="row">hasError('minlength')</th>
+        <td class="text-white" [class.bg-success]="!firstname.control.hasError('minlength')" [class.bg-danger]="firstname.control.hasError('minlength')">{{firstname.control.hasError('minlength')}}</td>
+      </tr>
+      <tr>
+        <th scope="row">hasError('maxlength')</th>
+        <td class="text-white" [class.bg-success]="!firstname.control.hasError('maxlength')" [class.bg-danger]="firstname.control.hasError('maxlength')">{{firstname.control.hasError('maxlength')}}</td>
+      </tr>
+      <tr>
+        <th scope="row">hasError('pattern') First letter capitalized</th>
+        <td class="text-white" [class.bg-success]="!firstname.control.hasError('pattern')" [class.bg-danger]="firstname.control.hasError('pattern')">{{firstname.control.hasError('pattern')}}</td>
+      </tr>
+    </tbody>
+  </table>
 
   <pre>{{ form.value | json }}</pre>
 

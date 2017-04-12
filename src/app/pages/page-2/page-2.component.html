@@ -1,3 +1,35 @@
-<p>
-  page-2 works!
-</p>
+<form class="mt-4 mb-4" [formGroup]="page2Form" (ngSubmit)="proceed(page2Form)">
+  <div class="row">
+    <div class="col-md-6">
+      <app-input formControlName="salutation" label="Salutation" minlength="3" maxlength="10" pattern="[A-Z][a-z]+" required></app-input>
+    </div>
+    <div class="col-md-6">
+      <app-input formControlName="title" label="Title" maxlength="10"></app-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6" [class.has-danger]="!page2Form.controls.firstname.valid && !page2Form.controls.firstname.pristine">
+      <app-input formControlName="firstname" label="Firstname" minlength="3" maxlength="10" pattern="[A-Z][a-z]+" required></app-input>
+    </div>
+    <div class="col-md-6" [class.has-danger]="!page2Form.controls.lastname.valid && !page2Form.controls.lastname.pristine">
+      <app-input formControlName="lastname" label="Lastname" minlength="3" maxlength="10" pattern="[A-Z][a-z]+" required></app-input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6" [class.has-danger]="!page2Form.controls.street.valid && !page2Form.controls.street.pristine">
+      <app-input formControlName="street" label="Street with number" minlength="3" maxlength="50" streetValidator required></app-input>
+    </div>
+    <div class="col-md-6" [class.has-danger]="!page2Form.controls.city.valid && !page2Form.controls.city.pristine">
+      <app-input formControlName="city" label="City" [(model)]="myCity" minlength="3" maxlength="50" pattern="[A-Z][a-z]+" required></app-input>
+    </div>
+  </div>
+
+
+  <pre>{{page2Form.value | json}}</pre>
+  <pre>{{page2Form.controls.firstname?.error | json}}</pre>
+
+  <div class="bg-danger text-white" *ngIf="submitted && !page2Form.valid">
+    Invalid form!
+  </div>
+  <button type="submit" class="btn btn-primary">Next</button>
+</form>

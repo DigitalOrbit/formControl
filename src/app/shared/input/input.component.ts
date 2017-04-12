@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -13,39 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-  private innerValue: string = '';
+export class InputComponent extends BaseComponent implements ControlValueAccessor {
 
   @Input() label: string = '';
-  @Input() set model(value) {
-    this.innerValue = value;
-    this.modelChange.emit(this.innerValue);
-    this.propagateChange(this.innerValue);
-  }
-
-  get model() {
-    return this.innerValue;
-  }
-
-  @Output() modelChange = new EventEmitter();
-
-  writeValue(value: any) {
-    if (value !== undefined) {
-      this.innerValue = value;
-    }
-  }
-
-  propagateChange = (_: any) => {};
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() {}
+  @Input() minlength: string = '';
+  @Input() maxlength: string = '';
+  @Input() pattern: string = '';
+  @Input() required: boolean = false;
 
 }
